@@ -28,7 +28,7 @@ class UsuariosController {
             $_SESSION['usuario'] = $user;
             $fecha = date('d-m-Y H:i:s');
             setcookie("conexion", $fecha, time() + 20 * 24 * 3600, "/");
-            echo 'LOGIN CORRECTO';
+            echo "LOGIN CORRECTO $loginValidado";
             //AÑADIR EL HEADER DONDE QUIERO QUE ME LLEVE SI EL USUARIO ES CORRECTO
         } else {
             echo 'LOGIN INCORRECTO';

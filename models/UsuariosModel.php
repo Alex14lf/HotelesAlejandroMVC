@@ -17,7 +17,8 @@ class UsuariosModel {
         $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE nombre = :user AND contraseña = :password');
         $stmt->execute(array(":user" => $user,":password" => $password));
         if ($stmt->rowCount() > 0) {
-            return true; 
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $usuario['rol'];
         } else {
             return false; 
         }
