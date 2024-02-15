@@ -1,17 +1,17 @@
 <?php
 //AÑADIR LOS ARCHIVOS NECESARIOS
 
-//include 'controllers/ExampleController.php';
-//include 'models/ExampleModel.php';
-//include 'views/ExampleView.php';
+include 'controllers/UsuariosController.php';
+include 'models/UsuariosModel.php';
+include 'views/UsuariosView.php';
 
 // Define la acción por defecto
     //modificar por la accion que quieres que se ejecute primero
-define('ACCION_DEFECTO', 'exampleListar');
+define('ACCION_DEFECTO', 'mostrar');
 
 // Define el controlador por defecto
     //modificar por el controlador necesario
-define('CONTROLADOR_DEFECTO', 'Example');
+define('CONTROLADOR_DEFECTO', 'Usuarios');
 
 // Comprueba la acción a realizar, que llegará en la petición.
 // Si no hay acción a realizar lanzará la acción por defecto, que es listar

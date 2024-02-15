@@ -1,0 +1,29 @@
+/*ESTILOS DEL BODY*/
+body {
+    background-image: url('../assets/images/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    /*background-color: #f8f9fa;*/
+}
+
+/*ESTILOS DEL LOGIN*/
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 100px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.login-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.login-form {
+    margin-bottom: 15px;
+}
+.login-form label {
+    font-weight: bold;
+}
+
