@@ -2,8 +2,8 @@
 body {
     background-image: url('../assets/images/fondo.jpg');
     background-size: cover;
-    background-position: center;
-    /*background-color: #f8f9fa;*/
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 /*ESTILOS DEL LOGIN*/

@@ -13,6 +13,14 @@ class UsuariosModel {
         $this->pdo = $this->bd->getPDO();
     }
 
-    
+    public function comprobarUsuario($user, $password) {
+        $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE nombre = :user AND contraseña = :password');
+        $stmt->execute(array(":user" => $user,":password" => $password));
+        if ($stmt->rowCount() > 0) {
+            return true; 
+        } else {
+            return false; 
+        }
+    }
 
 }

@@ -11,10 +11,29 @@ class UsuariosController {
         $this->view = new UsuariosView();
     }
 
-    // Muestra la lista de tareas
-    public function mostrar() {
-        // Muestra la vista de mostrarFormulario
+    /**
+     * MUESTRA LA VISTA DE MOSTRAR LOGIN.
+     */
+    public function login() {
         $this->view->mostrarLogin();
+    }
+    public function validarLogin() { 
+        $user = $_POST['user'];
+        $password = hash("sha256", $_POST['password']);
+
+        $loginValidado = $this->model->comprobarUsuario($user, $password);
+
+        if ($loginValidado) {
+            session_start();
+            $_SESSION['usuario'] = $user;
+            $fecha = date('d-m-Y H:i:s');
+            setcookie("conexion", $fecha, time() + 20 * 24 * 3600, "/");
+            echo 'LOGIN CORRECTO';
+            //AÑADIR EL HEADER DONDE QUIERO QUE ME LLEVE SI EL USUARIO ES CORRECTO
+        } else {
+            echo 'LOGIN INCORRECTO';
+            header("Location: ./index.php?error=incorrecto");
+        }
     }
 
 }

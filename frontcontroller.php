@@ -7,7 +7,7 @@ include 'views/UsuariosView.php';
 
 // Define la acción por defecto
     //modificar por la accion que quieres que se ejecute primero
-define('ACCION_DEFECTO', 'mostrar');
+define('ACCION_DEFECTO', 'login');
 
 // Define el controlador por defecto
     //modificar por el controlador necesario
