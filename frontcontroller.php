@@ -2,8 +2,15 @@
 //AÑADIR LOS ARCHIVOS NECESARIOS
 
 include 'controllers/UsuariosController.php';
+include 'controllers/HotelesController.php';
+
 include 'models/UsuariosModel.php';
+include 'models/HotelesModel.php';
+
 include 'views/UsuariosView.php';
+include 'views/HotelesView.php';
+
+include 'models/Hotel.php';
 
 // Define la acción por defecto
     //modificar por la accion que quieres que se ejecute primero

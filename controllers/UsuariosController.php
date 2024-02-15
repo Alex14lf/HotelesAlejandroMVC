@@ -26,10 +26,10 @@ class UsuariosController {
         if ($loginValidado) {
             session_start();
             $_SESSION['usuario'] = $user;
+            $_SESSION['rol']=$loginValidado;
             $fecha = date('d-m-Y H:i:s');
             setcookie("conexion", $fecha, time() + 20 * 24 * 3600, "/");
-            echo "LOGIN CORRECTO $loginValidado";
-            //AÑADIR EL HEADER DONDE QUIERO QUE ME LLEVE SI EL USUARIO ES CORRECTO
+            header("Location: ./index.php?controller=Hoteles&action=listarHoteles");
         } else {
             echo 'LOGIN INCORRECTO';
             header("Location: ./index.php?error=incorrecto");

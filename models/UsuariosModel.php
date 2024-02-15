@@ -1,6 +1,6 @@
 <?php
 
-include "./db/DB.php";
+include './db/DB.php';
 
 class UsuariosModel {
 
@@ -15,12 +15,12 @@ class UsuariosModel {
 
     public function comprobarUsuario($user, $password) {
         $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE nombre = :user AND contraseña = :password');
-        $stmt->execute(array(":user" => $user,":password" => $password));
+        $stmt->execute(array(":user" => $user, ":password" => $password));
         if ($stmt->rowCount() > 0) {
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
             return $usuario['rol'];
         } else {
-            return false; 
+            return false;
         }
     }
 
