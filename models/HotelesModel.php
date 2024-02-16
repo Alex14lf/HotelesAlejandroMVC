@@ -1,4 +1,5 @@
 <?php
+include_once 'db/DB.php';
 
 class HotelesModel {
 
@@ -16,9 +17,9 @@ class HotelesModel {
      * @return array asociativo de los hoteles.
      */
     public function getHoteles() {
-        $hoteles = $this->pdo->prepare('SELECT * FROM hoteles');
-        $hoteles->execute();
-        return $hoteles->fetchAll(PDO::FETCH_ASSOC);
+        $stmnt = $this->pdo->prepare('SELECT * FROM hoteles');
+        $stmnt->execute();
+        return $stmnt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

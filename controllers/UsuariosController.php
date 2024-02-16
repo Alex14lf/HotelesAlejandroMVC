@@ -22,8 +22,8 @@ class UsuariosController {
         $password = hash("sha256", $_POST['password']);
 
         $loginValidado = $this->model->comprobarUsuario($user, $password);
-
-        if ($loginValidado) {
+        
+        if ($loginValidado || $loginValidado===0) {
             session_start();
             $_SESSION['usuario'] = $user;
             $_SESSION['rol']=$loginValidado;

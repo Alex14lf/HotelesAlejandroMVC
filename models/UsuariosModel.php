@@ -12,7 +12,13 @@ class UsuariosModel {
         $this->bd = new DB();
         $this->pdo = $this->bd->getPDO();
     }
-
+    
+    /**
+     * Funcion que comprueba si el usuario y contraseña existen en la bd
+     * @param type $user
+     * @param type $password
+     * @return boolean
+     */
     public function comprobarUsuario($user, $password) {
         $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE nombre = :user AND contraseña = :password');
         $stmt->execute(array(":user" => $user, ":password" => $password));

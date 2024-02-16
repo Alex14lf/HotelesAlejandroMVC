@@ -3,7 +3,7 @@
 class HotelesView {
 
     /**
-     * FUNCION QUE MUESTRA LOS HOTELES.
+     * Funcion que muestra los hoteles.
      */
     public function mostrarHoteles($newHoteles) {
         session_start();
@@ -11,32 +11,45 @@ class HotelesView {
 
         <div class="container mt-5 bg-white rounded shadow-lg p-4">
             <div class="jumbotron">
-                <h1 class="display-4">Hola <?php echo $_SESSION["usuario"] ?></h1>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="display-4">Hola <?php echo $_SESSION["usuario"] ?></h1>
+                    <button class="btn btn-danger btn-lg" type="button">Cerrar Sesión</button>
+                </div>
                 <p class="lead">Bienvenido a nuestra plataforma de hoteles.</p>
                 <hr class="my-4">
-                <button class="btn btn-danger btn-lg" type="button">Cerrar Sesión</button>
             </div>
 
             <h2 class="mb-4">Listado de Hoteles:</h2>
-            <div class="row">
-                <?php
-                foreach ($newHoteles as $hotel) {
-                    ?>
-                    <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $hotel->getNombre() ?></h5>
-                                <p class="card-text"><?php echo $hotel->getDireccion() ?></p>
-                                <p class="card-text"><?php echo $hotel->getCiudad() ?></p>
-                                <p class="card-text"><?php echo $hotel->getPais() ?></p>
-                                <p class="card-text"><?php echo $hotel->getNum_habitaciones() ?></p>
-                                <p class="card-text"><?php echo $hotel->getDescripcion() ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
-                ?>
+            <!-- Agregar la tabla -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Ciudad</th>
+                            <th>País</th>
+                            <th>Habitaciones</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($newHoteles as $hotel) { ?>
+                            <tr>
+                                <td><?php echo $hotel->getNombre() ?></td>
+                                <td><?php echo $hotel->getDireccion() ?></td>
+                                <td><?php echo $hotel->getCiudad() ?></td>
+                                <td><?php echo $hotel->getPais() ?></td>
+                                <td><?php echo $hotel->getNum_habitaciones() ?></td>
+                                <td><?php echo $hotel->getDescripcion() ?></td>
+                                <td>
+                                    <a href="./index.php?controller=Habitaciones&action=listarHabitaciones&id=<?php echo $hotel->getId() ?>" class="btn btn-primary">Ver Habitaciones</a> 
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
 
