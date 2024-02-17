@@ -33,6 +33,15 @@ class HabitacionesView {
             </div>
 
             <h2 class="mb-4">Habitaciones del hotel <?php echo $id_hotel ?> </h2>
+            <?php
+            if (isset($_GET["error"]) && $_GET["error"] == "fecha") {
+                ?>
+                <div class="alert alert-danger" role="alert">
+                    La fecha introducida no es correcta, vuelve a intentarlo.
+                </div>
+                <?php
+            }
+            ?>
             <!-- Agregar la tabla -->
             <div class="table-responsive">
                 <table class="table">
@@ -62,7 +71,7 @@ class HabitacionesView {
                                 if ($_SESSION["rol"] == 0) {
                                     ?>
                                     <td>
-                                        <form method="post" action="./procesar_reserva.php">
+                                        <form method="post" action="./index.php?controller=Reservas&action=validarReserva">
                                             <input type="hidden" name="habitacion_id" value="<?php echo $habitacion->getId() ?>">
                                             <input type="hidden" name="hotel_id" value="<?php echo $habitacion->getId_hotel() ?>">
                                             <label for="fechaEntrada_<?php echo $habitacion->getId() ?>">Fecha de Entrada:</label>

@@ -4,17 +4,21 @@
 include 'controllers/UsuariosController.php';
 include 'controllers/HotelesController.php';
 include 'controllers/HabitacionesController.php';
+include 'controllers/ReservasController.php';
 
 include 'models/UsuariosModel.php';
 include 'models/HotelesModel.php';
 include 'models/HabitacionesModel.php';
+include 'models/ReservasModel.php';
 
 include 'views/UsuariosView.php';
 include 'views/HotelesView.php';
 include 'views/HabitacionesView.php';
+include 'views/ReservasView.php';
 
 include 'models/Hotel.php';
 include 'models/Habitacion.php';
+include 'models/Reserva.php';
 
 // Define la acción por defecto
     //modificar por la accion que quieres que se ejecute primero
