@@ -36,6 +36,12 @@ class ReservasModel {
         header("Location: ./index.php?controller=Habitaciones&action=listarHabitaciones&id=$hotel_id&reserva=exitosa");
     }
 
+    public function getReservasUsuario($id) {
+        $stmnt = $this->pdo->prepare('SELECT * FROM reservas WHERE id_usuario=:id_usuario');
+        $stmnt->execute(array('id_usuario' => $id));
+        return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 
 ?>

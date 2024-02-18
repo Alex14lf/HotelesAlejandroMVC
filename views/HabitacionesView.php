@@ -18,11 +18,11 @@ class HabitacionesView {
                     <?php
                     if ($_SESSION["rol"] == 1) {
                         ?>
-                        <a href="./index.php?controller=&action=" class="header__link btn btn-primary btn-lg">Ver Reservas</a>
+                        <a href="./index.php?controller=Reservas&action=mostrarReservasUsuario" class="header__link btn btn-primary btn-lg">Ver Reservas</a>
                         <?php
                     } else {
                         ?>
-                        <a href="./index.php?controller=&action=" class="header__link btn btn-primary btn-lg">Ver mis reservas</a>
+                        <a href="./index.php?controller=Reservas&action=mostrarReservasUsuario" class="header__link btn btn-primary btn-lg">Ver mis reservas</a>
                         <?php
                     }
                     ?>
