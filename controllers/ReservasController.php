@@ -3,6 +3,7 @@
 class ReservasController {
 
     private $model;
+
 //    private $view;
 
     public function __construct() {
@@ -19,13 +20,12 @@ class ReservasController {
             $fechaSalida = $_POST['fechaSalida'];
 
             if ($fechaEntrada < $fechaSalida) {
-                echo 'SALES ANTES DE ENTRAR';
-//                $validarReserva = $this->model->comprobarReserva($habitacion_id, $hotel_id, $fechaEntrada, $fechaSalida);
-//                if ($validarReserva) {
-//                    $insertarReserva = $this->model->insertarReserva($habitacion_id, $hotel_id, $fechaEntrada, $fechaSalida);
-//                }else{
-//                     header("Location: ./index.php?controller=Hoteles&action=listarHoteles&error=existente");
-//                }
+                $validarReserva = $this->model->comprobarReserva($habitacion_id, $hotel_id, $fechaEntrada, $fechaSalida);
+                if ($validarReserva) {
+                    header("Location: ./index.php?controller=Habitaciones&action=listarHabitaciones&id=$hotel_id&error=existente");
+                } else {
+                    $this->model->postReserva($habitacion_id, $hotel_id, $fechaEntrada, $fechaSalida);
+                }
             } else {
                 header("Location: ./index.php?controller=Habitaciones&action=listarHabitaciones&id=$hotel_id&error=fecha");
             }

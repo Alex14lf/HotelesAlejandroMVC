@@ -24,15 +24,11 @@ class UsuariosController {
 
         $loginValidado = $this->model->comprobarUsuario($user, $password);
 
-        if ($loginValidado || $loginValidado === 0) {
-            session_start();
-            $_SESSION['usuario'] = $user;
-            $_SESSION['rol'] = $loginValidado;
+        if ($loginValidado) {
             $fecha = date('d-m-Y H:i:s');
             setcookie("conexion", $fecha, time() + 20 * 24 * 3600, "/");
             header("Location: ./index.php?controller=Hoteles&action=listarHoteles");
         } else {
-            echo 'LOGIN INCORRECTO';
             header("Location: ./index.php?error=incorrecto");
         }
     }

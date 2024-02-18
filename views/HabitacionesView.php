@@ -41,6 +41,20 @@ class HabitacionesView {
                 </div>
                 <?php
             }
+            if (isset($_GET["error"]) && $_GET["error"] == "existente") {
+                ?>
+                <div class="alert alert-danger" role="alert">
+                    Habitacion ocupada en esa fecha, pruebe con otra.
+                </div>
+                <?php
+            }
+            if (isset($_GET["reserva"]) && $_GET["reserva"] == "exitosa") {
+                ?>
+                <div class="alert alert-success" role="alert">
+                    Reserva realizada.
+                </div>
+                <?php
+            }
             ?>
             <!-- Agregar la tabla -->
             <div class="table-responsive">
@@ -53,7 +67,7 @@ class HabitacionesView {
                             <?php
                             if ($_SESSION["rol"] == 0) {
                                 ?>
-                                <th>Acciones</th>
+                                <th>Reservar</th>
                                 </td>
                                 <?php
                             }

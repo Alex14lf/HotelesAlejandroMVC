@@ -17,44 +17,24 @@ class ReservasModel {
         $this->pdo = $this->bd->getPDO();
     }
 
-//    public function comprobarReserva($id_habitacion, $id_hotel, $fecha_entrada, $fecha_salida) {
-//        try {
-//            $sql = 'SELECT COUNT(*) FROM reservas WHERE id_hotel = :id_hotel AND id_habitacion = :id_habitacion AND NOT (fecha_entrada >= :fecha_salida OR fecha_salida <= :fecha_entrada);';
-//            $reservas = $this->pdo->prepare($sql);
-//            $reservas->execute(array('id_hotel' => $id_hotel, 'id_habitacion' => $id_habitacion, 'fecha_entrada' => $fecha_entrada, 'fecha_salida' => $fecha_salida));
-//
-//            $reserva = $reservas->fetchColumn();
-//
-//            if ($reserva > 0) {
-//                return false;
-//            } else {
-//                return true;
-//            }
-//        } catch (Exception $e) {
-//            echo "Error para comprobar la reserva: " . $e->getMessage();
-//        }
-//    }
-//
-//    public function insertarReserva($id_habitacion, $id_hotel, $fecha_entrada, $fecha_salida) {
-//        try {
-//            // Obtener el máximo ID de la tabla reservas
-//            $sqlMaxID = "SELECT MAX(id) 'idMax' FROM reservas";
-//            $MaxID = $this->pdo->prepare($sqlMaxID);
-//            $MaxID->execute();
-//            $maxIDResult = $MaxID->fetch(PDO::FETCH_ASSOC);
-//            $nuevoID = $maxIDResult['idMax'] + 1;
-//
-//            // INSERT de la nueva reserva
-//            $sql = "INSERT INTO reservas (id, id_usuario, id_hotel, id_habitacion, fecha_entrada, fecha_salida) "
-//                    . "VALUES(:id, :id_usuario, :id_hotel, :id_habitacion, :fecha_entrada, :fecha_salida);";
-//            $insertReserva = $this->pdo->prepare($sql);
-//            $insertReserva->execute(array('id' => $nuevoID, 'id_usuario' => $_SESSION['id'], 'id_hotel' => $id_hotel, 'id_habitacion' => $id_habitacion, 'fecha_entrada' => $fecha_entrada, 'fecha_salida' => $fecha_salida));
-//
-//            header('Location: index.php?controller=Reserva&action=usuarioReservas&success');
-//        } catch (Exception $e) {
-//            echo "Error al insertar una reserva: " . $e->getMessage();
-//        }
-//    }
+    public function comprobarReserva($habitacion_id, $hotel_id, $fechaEntrada, $fechaSalida) {
+        $sql = 'SELECT COUNT(*) FROM reservas WHERE id_hotel = :id_hotel AND id_habitacion = :id_habitacion AND NOT (fecha_entrada >= :fecha_salida OR fecha_salida <= :fecha_entrada);';
+        $stmnt = $this->pdo->prepare($sql);
+        $stmnt->execute(array('id_hotel' => $hotel_id, 'id_habitacion' => $habitacion_id, 'fecha_entrada' => $fechaEntrada, 'fecha_salida' => $fechaSalida));
+        $cantidadReservas = $stmnt->fetchColumn();
+        if ($cantidadReservas > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function postReserva($habitacion_id, $hotel_id, $fechaEntrada, $fechaSalida) {
+        $sql = "INSERT INTO reservas (id_usuario, id_hotel, id_habitacion, fecha_entrada, fecha_salida) VALUES (:id_usuario, :id_hotel, :id_habitacion, :fecha_entrada, :fecha_salida);";
+        $insertReserva = $this->pdo->prepare($sql);
+        $insertReserva->execute(array('id_usuario' => $_SESSION['id'], 'id_hotel' => $hotel_id, 'id_habitacion' => $habitacion_id, 'fecha_entrada' => $fechaEntrada, 'fecha_salida' => $fechaSalida));
+        header("Location: ./index.php?controller=Habitaciones&action=listarHabitaciones&id=$hotel_id&reserva=exitosa");
+    }
 
 }
 
